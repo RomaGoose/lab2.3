@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(lab3 VERSION 0.1 LANGUAGES CXX)
+project(hanoi VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -12,21 +12,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
-set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_CURRENT_SOURCE_DIR}/qt_forms)
 
-set(PROJECT_SOURCES
-        main.cpp
-        src/mainwindow.cpp
-        include/mainwindow.h
-        qt_forms/mainwindow.ui
+add_subdirectory(view)
+
+qt_add_executable(hanoi main.cpp)
+
+target_link_libraries(hanoi PRIVATE 
+        Qt6::Widgets
+        view_lib        
 )
 
-qt_add_executable(lab3 ${PROJECT_SOURCES})
 
-target_include_directories(lab3 PRIVATE
-    include
-    libs/sequence/include
-)
-
-target_link_libraries(lab3 PRIVATE 
-        Qt6::Widgets)
+# target_include_directories(hanoi PRIVATE
+#     libs/sequence/include
+# )
