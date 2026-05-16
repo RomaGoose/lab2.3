@@ -1,0 +1,3 @@
+[submodule "libs/sequence"]
+	path = libs/sequence
+	url = https://github.com/RomaGoose/lab2.2.git
