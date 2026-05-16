@@ -10,6 +10,7 @@ main_controller::main_controller(QObject* parent)
     , settings_(main_window_->get_type_combo(), main_window_->get_rods_count_cpin()){
 
     main_window_->add_hanoi_widget(hanoi_widget_);
+    hanoi_widget_->draw_rods();
 };
 
 void main_controller::show() {
