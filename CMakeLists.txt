@@ -10,6 +10,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(LIBS_PATH ${PROJECT_SOURCE_DIR}/libs)
+
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 
@@ -23,6 +25,7 @@ target_link_libraries(hanoi PRIVATE
 )
 
 
-# target_include_directories(hanoi PRIVATE
-#     libs/sequence/include
-# )
+target_include_directories(hanoi PRIVATE
+    libs/sequence/include
+    libs/adapters/include
+)
