@@ -1,6 +1,6 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
+#include "hanoi_widget.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -19,5 +19,5 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    HanoiWidget* hanoi_widget;
 };
-#endif // MAINWINDOW_H

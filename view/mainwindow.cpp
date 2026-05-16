@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    hanoi_widget = new HanoiWidget(this);
+    ui->horizontalLayout->addWidget(hanoi_widget);
 }
 
 MainWindow::~MainWindow()

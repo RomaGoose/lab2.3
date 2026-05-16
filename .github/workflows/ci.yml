@@ -15,7 +15,7 @@ jobs:
           sudo apt update
           sudo apt install -y build-essential cmake qt6-base-dev
       
-      - name: Кэширование зависимостей и сборки
+      - name: кэширование зависимостей и сборки
         uses: actions/cache@v4
         with:
           path: |
