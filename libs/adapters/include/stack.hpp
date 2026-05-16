@@ -1,6 +1,7 @@
 #pragma once
 
 #include "stackable.hpp"
+#include <initializer_list>
 
 template <stackable S> 
 class stack {
@@ -10,6 +11,12 @@ public:
     using value_type = typename S::value_type;
     using reference = typename S::reference;
     
+    stack(std::initializer_list<value_type> list = {}) {
+        for(auto el: list){
+            push(el);
+        }
+    }
+
     void push(const value_type& item) {
         items_.push(item);
     }
@@ -20,7 +27,7 @@ public:
         items_.pop();
     }
     reference top(){
-        items_.top();
+        return items_.top();
     }
     const reference top() const {
         items_.top();

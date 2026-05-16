@@ -24,7 +24,7 @@ struct seq_stack_adapter {
         items_.pop_last();
     }
     reference top(){
-        items_.last();
+        return items_.last();
     }
     const reference top() const {
         items_.last();
