@@ -1,5 +1,5 @@
 add_library(model_lib STATIC
-    hanoi_model.cpp
+    # hanoi_model.cpp
 )
 
 target_include_directories(model_lib PUBLIC 

@@ -15,13 +15,17 @@ set(LIBS_PATH ${PROJECT_SOURCE_DIR}/libs)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 
+add_subdirectory(model)
 add_subdirectory(view)
+add_subdirectory(controller)
 
 qt_add_executable(hanoi main.cpp)
 
 target_link_libraries(hanoi PRIVATE 
         Qt6::Widgets
-        view_lib        
+        view_lib  
+        controller_lib      
+        model_lib
 )
 
 

@@ -8,4 +8,7 @@ HanoiWidget::HanoiWidget(QWidget* parent)
 {
     scene_->setSceneRect(0, 0, scene_width_, scene_height_);
     setScene(scene_);
+
+    setMinimumSize(900, 500);
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }

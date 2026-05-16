@@ -1,3 +1,4 @@
+#pragma once
 #include "array_sequence.hpp"
 #include <cstdint>
 

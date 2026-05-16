@@ -3,6 +3,7 @@
 #include "game_model.h"
 
 class game_controller_base {
+public: 
     virtual ~game_controller_base() = default;
 };
 
