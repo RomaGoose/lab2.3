@@ -27,7 +27,7 @@ struct seq_stack_adapter {
         items_.append(item);
     }
     void push(value_type&& item) {
-        items_.append(item);
+        items_.append(std::move(item));
     }
     void pop(){
         items_.pop_last();
