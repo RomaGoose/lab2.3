@@ -1,4 +1,4 @@
-#include "settings_controller.h"
+#include "settings_controller.hpp"
 
 settings_controller::settings_controller(QComboBox* type_combo, QSpinBox* rods_count_spin) 
     : type_combo_(type_combo)

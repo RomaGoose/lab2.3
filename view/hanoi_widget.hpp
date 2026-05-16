@@ -11,7 +11,7 @@ class HanoiWidget : public QGraphicsView {
 public:
     explicit HanoiWidget(QWidget *parent = nullptr);
 
-    // void draw_rods();
+    void draw_rods();
     // void draw_disks();
     // void reset();
 

@@ -1,7 +1,7 @@
-#include "main_controller.h"
-#include "hanoi_widget.h"
-#include "mainwindow.h"
-#include "settings_controller.h"
+#include "main_controller.hpp"
+#include "hanoi_widget.hpp"
+#include "mainwindow.hpp"
+#include "settings_controller.hpp"
 #include <qobject.h>
 
 main_controller::main_controller(QObject* parent) 

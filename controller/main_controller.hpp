@@ -1,9 +1,9 @@
 #pragma once
 
-#include "game_controller.h"
-#include "hanoi_widget.h"
-#include "mainwindow.h"
-#include "settings_controller.h"
+#include "game_controller.hpp"
+#include "hanoi_widget.hpp"
+#include "mainwindow.hpp"
+#include "settings_controller.hpp"
 #include <memory>
 #include <qobject.h>
 #include <qtmetamacros.h>

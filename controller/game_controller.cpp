@@ -1,4 +1,4 @@
-#include "game_controller.h"
+#include "game_controller.hpp"
 
 template <template <class> class Stack>
 game_controller<Stack>::game_controller(HanoiWidget* view, game_model<Stack> model)

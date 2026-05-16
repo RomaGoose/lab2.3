@@ -1,4 +1,4 @@
-#include "hanoi_widget.h"
+#include "hanoi_widget.hpp"
 #include <qgraphicsscene.h>
 #include <qwidget.h>
 

@@ -1,6 +1,6 @@
 #pragma once
-#include "hanoi_widget.h"
-#include "game_model.h"
+#include "hanoi_widget.hpp"
+#include "game_model.hpp"
 
 class game_controller_base {
 public: 

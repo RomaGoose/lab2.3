@@ -1,6 +1,6 @@
 #pragma once
 
-#include "hanoi_widget.h"
+#include "hanoi_widget.hpp"
 #include <QMainWindow>
 #include <qcombobox.h>
 #include <qspinbox.h>
