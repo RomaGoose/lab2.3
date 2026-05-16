@@ -11,7 +11,7 @@ jobs:
       - name: установка инструментов сборки
         run: |
           sudo apt update
-          sudo apt install -y build-essential cmake
+          sudo apt install -y build-essential cmake qt6-base-dev
         
       - name: конфигурация cmake
         run: cmake -S . -B build
