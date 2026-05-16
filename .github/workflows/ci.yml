@@ -7,12 +7,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-
+        with:
+          submodules: recursive
+          
       - name: установка инструментов сборки
         run: |
           sudo apt update
           sudo apt install -y build-essential cmake qt6-base-dev
-        
+      
+      - name: Кэширование зависимостей и сборки
+        uses: actions/cache@v4
+        with:
+          path: |
+            build
+          key: ${{ runner.os }}-cache-${{ hashFiles('CMakeLists.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-cache-
+      
       - name: конфигурация cmake
         run: cmake -S . -B build
       
