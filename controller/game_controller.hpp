@@ -9,6 +9,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <qkeysequence.h>
+#include <qobject.h>
 #include <qtmetamacros.h>
 #include <qtimer.h>
 #include "game_controller_base.hpp"
@@ -67,6 +68,7 @@ public slots:
             }
             else {
                 //TODO: error message
+                emit error_message("Нельзя больший диск ставить на меньший");
             }
         }
         else{

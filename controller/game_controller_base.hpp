@@ -1,6 +1,7 @@
 #pragma once
 
 #include <qobject.h>
+#include <qtmetamacros.h>
 
 class game_controller_base  : public QObject {
 
@@ -11,6 +12,9 @@ public:
     virtual ~game_controller_base();
     virtual void solve() = 0;
     virtual void set_speed(int value) = 0;
+
+signals:
+    void error_message(const QString& message);
 
 public slots:
     virtual void on_disks_changed(int new_disk_count) = 0;

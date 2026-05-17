@@ -59,7 +59,7 @@ void HanoiWidget::draw_disks(array_sequence<list_sequence<uint8_t>> rods, size_t
                 disk_width, 
                 disk_height,
                 QPen(Qt::NoPen),
-                QBrush(qRgb(255 - disk * 20, 0, 0)) //TODO: disk colors
+                QBrush(QColor::fromHsv(disk * 35, 200, 200))
             );
             ++disk_index;
         }

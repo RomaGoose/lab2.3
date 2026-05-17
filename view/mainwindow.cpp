@@ -19,3 +19,7 @@ void MainWindow::add_hanoi_widget(HanoiWidget* widget) {
 void MainWindow::add_settings_widget(QWidget* widget) {
     ui->central_hl->layout()->addWidget(widget);
 };
+
+void MainWindow::show_message(const QString& message) {
+    ui->statusbar->showMessage(message, 1000);
+};

@@ -29,6 +29,8 @@ public:
 
     QPushButton* get_reset_btn();
     QPushButton* get_solve_btn();
+
+    void show_message(const QString& message);
 private:
     Ui::MainWindow* ui;
     HanoiWidget* hanoi_widget;

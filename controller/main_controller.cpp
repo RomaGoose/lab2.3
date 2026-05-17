@@ -1,5 +1,6 @@
 #include "main_controller.hpp"
 #include "game_controller.hpp"
+#include "game_controller_base.hpp"
 #include "hanoi_widget.hpp"
 #include "mainwindow.hpp"
 #include "sequence_stack.hpp"
@@ -12,10 +13,16 @@ main_controller::main_controller(QObject* parent)
     , hanoi_widget_(new HanoiWidget(main_window_)) 
     , settings_(this) {
 
+    setup_ui();
+    setup_connections();
+};
+
+void main_controller::setup_ui() {
     main_window_->add_hanoi_widget(hanoi_widget_);
     setup_game(settings_.get_type_index());
     main_window_->add_settings_widget(settings_.get_settings_widget());
-
+};
+void main_controller::setup_connections() {
     connect(
         &settings_,
         &settings_controller::container_type_changed,
@@ -40,12 +47,21 @@ main_controller::main_controller(QObject* parent)
         this,
         &main_controller::on_speed_changed
     );
+    connect(
+        game_.get(),
+        &game_controller_base::error_message,
+        this, 
+        &main_controller::on_error_message
+    );
 };
 
 void main_controller::on_speed_changed(int value) {
     game_->set_speed(value);
 };
 
+void main_controller::on_error_message(const QString& msg){
+    main_window_->show_message(msg);
+}
 
 void main_controller::on_container_type_changed(int index) {
     setup_game(index);
