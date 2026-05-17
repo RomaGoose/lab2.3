@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game_controller.hpp"
+#include "game_controller_base.hpp"
 #include "hanoi_widget.hpp"
 #include "mainwindow.hpp"
 #include "settings_controller.hpp"
@@ -21,4 +21,6 @@ public:
     main_controller(QObject* parent = nullptr);
 
     void show();
+private:
+    void setup_game();
 };

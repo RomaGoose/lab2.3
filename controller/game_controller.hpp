@@ -7,11 +7,8 @@
 #include <cassert>
 #include <cstddef>
 #include <cstdint>
-
-class game_controller_base {
-public: 
-    virtual ~game_controller_base() = default;
-};
+#include <qtmetamacros.h>
+#include "game_controller_base.hpp"
 
 template <template <class> class Stack>
 class game_controller : public game_controller_base {
@@ -19,12 +16,17 @@ class game_controller : public game_controller_base {
     game_model<Stack> model_;
 public:
     game_controller(HanoiWidget* view, size_t total_disk_count);
+    ~game_controller() override = default;
 private:
     void update_view();
     array_sequence<array_sequence<uint8_t>> stacks_to_arrays(array_sequence<array_stack<uint8_t>> stacks) const;
+
+public slots:
+    void on_disks_changed(int new_disk_count) override {
+        model_ = game_model<Stack>(new_disk_count);
+        update_view();
+    };
 };
-
-
 
 template <template <class> class Stack>
 game_controller<Stack>::game_controller(HanoiWidget* view, size_t total_disk_count)
@@ -36,11 +38,10 @@ game_controller<Stack>::game_controller(HanoiWidget* view, size_t total_disk_cou
 
 template <template <class> class Stack>
 void game_controller<Stack>::update_view() {
+    view_->clear_canvas();
     auto stack_rods = model_.get_rods_data();
     auto array_rods = stacks_to_arrays(stack_rods);
-    assert(array_rods[0][0] == 0);
-    assert(array_rods[0][1] == 1);
-    assert(array_rods[0][2] == 2);
+    view_->draw_rods();
     view_->draw_disks(array_rods, model_.get_total_disk_count());
 }
 

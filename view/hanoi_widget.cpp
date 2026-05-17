@@ -42,7 +42,6 @@ void HanoiWidget::draw_disks(array_sequence<array_sequence<uint8_t>> rods, size_
     size_t disk_width_increment = (max_disk_size - min_disk_size) / (total_disk_count - 1);
     size_t disk_height = (rod_height * 0.9) / total_disk_count;
 
-    assert(rods[0].size() == 3);
     size_t rod_index = 0;
     for(auto rod: rods){
         for(auto disk: rod){
@@ -53,9 +52,13 @@ void HanoiWidget::draw_disks(array_sequence<array_sequence<uint8_t>> rods, size_
                 disk_width, 
                 disk_height,
                 QPen(Qt::NoPen),
-                QBrush(qRgb(255 - disk*50, 0, 0))
+                QBrush(qRgb(255 - disk * 20, 0, 0)) //TODO: disk colors
             );
         }
         ++rod_index;
     }
+}
+
+void HanoiWidget::clear_canvas(){
+    scene_->clear();
 }

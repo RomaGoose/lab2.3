@@ -1,5 +1,5 @@
 add_library(controller_lib STATIC
-    # game_controller.cpp
+    game_controller_base.cpp
     settings_controller.cpp
     main_controller.cpp
 )

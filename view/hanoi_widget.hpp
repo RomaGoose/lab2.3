@@ -16,8 +16,8 @@ public:
 
     void draw_rods();
     void draw_disks(array_sequence<array_sequence<uint8_t>> rods, size_t total_disk_count);
-    // void draw_disks();
-    // void reset();
+
+    void clear_canvas();
     
 private:
     QGraphicsScene* scene_;
