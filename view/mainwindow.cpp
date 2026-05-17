@@ -21,6 +21,15 @@ QSpinBox* MainWindow::get_rods_count_cpin() {
 };
 
 
+QPushButton* MainWindow::get_reset_btn() {
+    return ui->btn_reset;
+};
+
+QPushButton* MainWindow::get_solve_btn() {
+    return ui->btn_solve;
+};
+
+
 void MainWindow::add_hanoi_widget(HanoiWidget* widget) {
     ui->central_hl->layout()->addWidget(widget);
 };

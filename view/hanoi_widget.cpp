@@ -17,8 +17,10 @@ HanoiWidget::HanoiWidget(QWidget* parent)
     scene_->setSceneRect(0, 0, scene_width_, scene_height_);
     setScene(scene_);
 
-    // setMinimumSize(900, 500);
-    // setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    setMinimumSize(scene_width_ + frameWidth() * 2, scene_height_ + frameWidth() * 2);    
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 void HanoiWidget::draw_rods(){

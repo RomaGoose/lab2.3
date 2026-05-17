@@ -30,9 +30,6 @@ protected:
 
         int rod = rod_clicked_at(click_pos.x());
         
-        // if(rod != -1){
-        // }
-        
         emit rod_clicked(rod);
         
         QGraphicsView::mousePressEvent(event);

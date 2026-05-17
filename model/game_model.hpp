@@ -4,6 +4,8 @@
 #include <cassert>
 #include <cstddef>
 #include <cstdint>
+#include <qobjectdefs.h>
+#include <qtypes.h>
 
 template <template <class> class Stack>
 class game_model {

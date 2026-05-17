@@ -3,6 +3,7 @@
 #include "hanoi_widget.hpp"
 #include <QMainWindow>
 #include <qcombobox.h>
+#include <qpushbutton.h>
 #include <qspinbox.h>
 
 QT_BEGIN_NAMESPACE
@@ -23,6 +24,9 @@ public:
     
     QComboBox* get_type_combo();
     QSpinBox* get_rods_count_cpin();
+
+    QPushButton* get_reset_btn();
+    QPushButton* get_solve_btn();
 private:
     Ui::MainWindow* ui;
     HanoiWidget* hanoi_widget;
