@@ -22,5 +22,8 @@ public:
 
     void show();
 private:
-    void setup_game();
+    void setup_game(int type);
+
+public slots:
+    void on_container_type_changed(int index);
 };

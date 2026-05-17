@@ -15,12 +15,22 @@ main_controller::main_controller(QObject* parent)
     main_window_->add_hanoi_widget(hanoi_widget_);
     hanoi_widget_->draw_rods();
 
-    setup_game();
+    setup_game(settings_.get_type_index());
+
+    connect(
+        &settings_,
+        &settings_controller::container_type_changed,
+        this,
+        &main_controller::on_container_type_changed
+    );
 };
 
+void main_controller::on_container_type_changed(int index) {
+    setup_game(index);
+};
 
-void main_controller::setup_game(){
-    switch (settings_.get_type_index()) {
+void main_controller::setup_game(int type){
+    switch (type) {
     case 0:
         game_ = std::make_unique<game_controller<list_stack>>(hanoi_widget_, settings_.get_rods_count());
         break;
