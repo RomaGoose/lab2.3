@@ -28,4 +28,5 @@ public slots:
     void on_container_type_changed(int index);
     void on_reset();
     void on_solve();
+    void on_speed_changed(int value);
 };

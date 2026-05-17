@@ -13,9 +13,8 @@ main_controller::main_controller(QObject* parent)
     , settings_(this) {
 
     main_window_->add_hanoi_widget(hanoi_widget_);
-    main_window_->add_settings_widget(settings_.get_settings_widget());
-
     setup_game(settings_.get_type_index());
+    main_window_->add_settings_widget(settings_.get_settings_widget());
 
     connect(
         &settings_,
@@ -35,7 +34,18 @@ main_controller::main_controller(QObject* parent)
         this,
         &main_controller::on_solve
     );
+    connect(
+        &settings_,
+        &settings_controller::change_speed,
+        this,
+        &main_controller::on_speed_changed
+    );
 };
+
+void main_controller::on_speed_changed(int value) {
+    game_->set_speed(value);
+};
+
 
 void main_controller::on_container_type_changed(int index) {
     setup_game(index);
@@ -64,6 +74,8 @@ void main_controller::setup_game(int type){
         &settings_, &settings_controller::disk_count_changed,
         game_.get(), &game_controller_base::on_disks_changed
     );
+
+    game_->set_speed(settings_.get_speed());
 }
 void main_controller::show() {
     main_window_->show();

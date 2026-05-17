@@ -20,15 +20,22 @@ class game_controller : public game_controller_base {
 
     QTimer* solve_timer_;
     list_sequence<array_sequence<uint8_t>> solution_steps; //TODO: queue
-    int delay = 300;
+    static constexpr int min_delay = 10;
+    int delay;
 
     int selected_rod = -1;
 
 public:
     game_controller(HanoiWidget* view, size_t total_disk_count);
     ~game_controller() override = default;
+    void set_speed(int value) override {
+        delay = min_delay / (value / 100.0f);
+        solve_timer_->setInterval(delay);
+        if (solve_timer_->isActive()) solve_timer_->start();
+    }
     void solve() override {
         generate_solution(0, 2, model_.get_total_disk_count());
+
         solve_timer_->start(delay);
     };
 
