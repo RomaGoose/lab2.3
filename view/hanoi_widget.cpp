@@ -1,8 +1,12 @@
 #include "hanoi_widget.hpp"
+#include <cassert>
 #include <cstddef>
+#include <qbrush.h>
+#include <qdebug.h>
 #include <qgraphicsscene.h>
 #include <qnamespace.h>
 #include <qpen.h>
+#include <qrgb.h>
 #include <qwidget.h>
 
 HanoiWidget::HanoiWidget(QWidget* parent) 
@@ -17,13 +21,10 @@ HanoiWidget::HanoiWidget(QWidget* parent)
 }
 
 void HanoiWidget::draw_rods(){
-    constexpr size_t distance = scene_width_ / 3;
-    constexpr size_t x_first = distance / 2;
-
     for (size_t i = 0; i < rods_count; ++i) {
         size_t curr_x = x_first + i * distance;
-        draw_rod(curr_x, scene_height_ * 0.8, scene_height_ * 0.6);
-        draw_base(curr_x - distance * 0.4, scene_height_ * 0.8, distance * 0.8, 8);
+        draw_rod(curr_x, base_y, rod_height);
+        draw_base(curr_x - rod_base_width / 2, base_y, rod_base_width, rod_width);
     };
 };
 
@@ -35,3 +36,26 @@ void HanoiWidget::draw_base(size_t x, size_t y, size_t width, size_t heigt) {
     scene_->addLine(x, y, x + width, y, QPen(Qt::white, heigt));
     // scene_->addRect(x, y, width, heigt, );
 };
+
+void HanoiWidget::draw_disks(array_sequence<array_sequence<uint8_t>> rods, size_t total_disk_count) {
+
+    size_t disk_width_increment = (max_disk_size - min_disk_size) / (total_disk_count - 1);
+    size_t disk_height = (rod_height * 0.9) / total_disk_count;
+
+    assert(rods[0].size() == 3);
+    size_t rod_index = 0;
+    for(auto rod: rods){
+        for(auto disk: rod){
+            size_t disk_width = min_disk_size + disk * (disk_width_increment);
+            scene_->addRect(
+                x_first - disk_width / 2 + rod_index * distance, 
+                (base_y - rod_width / 2) - (total_disk_count - disk) * disk_height, 
+                disk_width, 
+                disk_height,
+                QPen(Qt::NoPen),
+                QBrush(qRgb(255 - disk*50, 0, 0))
+            );
+        }
+        ++rod_index;
+    }
+}
