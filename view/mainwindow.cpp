@@ -1,14 +1,25 @@
-#include "mainwindow.h"
+#include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-{
+    , ui(new Ui::MainWindow){
+
     ui->setupUi(this);
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow(){
     delete ui;
 }
+
+void MainWindow::add_hanoi_widget(HanoiWidget* widget) {
+    ui->central_hl->layout()->addWidget(widget);
+};
+
+void MainWindow::add_settings_widget(QWidget* widget) {
+    ui->central_hl->layout()->addWidget(widget);
+};
+
+void MainWindow::show_message(const QString& message) {
+    ui->statusbar->showMessage(message, 1000);
+};

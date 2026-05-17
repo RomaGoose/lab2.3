@@ -13,6 +13,7 @@ struct seq_stack_adapter {
     
     using value_type = typename Seq::value_type;
     using reference = typename Seq::reference;
+    using const_reference = const value_type&;
     
     void push(const value_type& item) {
         items_.append(item);
@@ -26,8 +27,8 @@ struct seq_stack_adapter {
     reference top(){
         return items_.last();
     }
-    const reference top() const {
-        items_.last();
+    const_reference top() const {
+        return items_.last();
     }
     size_t size() const noexcept {
         return items_.size();

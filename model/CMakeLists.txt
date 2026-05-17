@@ -1,14 +1,13 @@
-add_library(view_lib STATIC
-    mainwindow.cpp
-    hanoi_widget.cpp
+add_library(model_lib STATIC
+    # game_model.cpp
 )
 
-target_include_directories(view_lib PUBLIC 
+target_include_directories(model_lib PUBLIC 
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${LIBS_PATH}/sequence/include
     ${LIBS_PATH}/adapters/include
 )
 
-target_link_libraries(view_lib PRIVATE Qt6::Widgets)
+target_link_libraries(model_lib PRIVATE Qt6::Widgets)
 
 set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_CURRENT_SOURCE_DIR})
