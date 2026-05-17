@@ -1,6 +1,7 @@
 #include "hanoi_widget.hpp"
 #include <cassert>
 #include <cstddef>
+#include <cstdlib>
 #include <qbrush.h>
 #include <qdebug.h>
 #include <qgraphicsscene.h>
@@ -37,23 +38,28 @@ void HanoiWidget::draw_base(size_t x, size_t y, size_t width, size_t heigt) {
     // scene_->addRect(x, y, width, heigt, );
 };
 
-void HanoiWidget::draw_disks(array_sequence<array_sequence<uint8_t>> rods, size_t total_disk_count) {
+void HanoiWidget::draw_disks(array_sequence<list_sequence<uint8_t>> rods, size_t total_disk_count, int selected_rod) {
 
     size_t disk_width_increment = (max_disk_size - min_disk_size) / (total_disk_count - 1);
     size_t disk_height = (rod_height * 0.9) / total_disk_count;
 
     size_t rod_index = 0;
+    size_t disk_index = 0;
     for(auto rod: rods){
         for(auto disk: rod){
             size_t disk_width = min_disk_size + disk * (disk_width_increment);
+            size_t y_rod = (base_y - rod_width / 2) - (total_disk_count - disk) * disk_height;
+            y_rod -= selected_rod == rod_index && disk_index == rod.size() - 1 ? rod_height * 0.2 : 0;
+
             scene_->addRect(
                 x_first - disk_width / 2 + rod_index * distance, 
-                (base_y - rod_width / 2) - (total_disk_count - disk) * disk_height, 
+                y_rod, 
                 disk_width, 
                 disk_height,
                 QPen(Qt::NoPen),
                 QBrush(qRgb(255 - disk * 20, 0, 0)) //TODO: disk colors
             );
+            ++disk_index;
         }
         ++rod_index;
     }
@@ -62,3 +68,23 @@ void HanoiWidget::draw_disks(array_sequence<array_sequence<uint8_t>> rods, size_
 void HanoiWidget::clear_canvas(){
     scene_->clear();
 }
+
+int  HanoiWidget::rod_clicked_at(int x) {
+    for (int i = 0; i < 3; ++i) {
+        if (abs((int)(x - (x_first + i * distance))) < distance * 0.8) {
+            return i;
+        }
+    }
+    return -1;
+};
+
+void HanoiWidget::draw_selection(int index){
+    scene_->addLine(
+        x_first - (rod_base_width / 2) + (index * distance), 
+        base_y + scene_height_ * 0.5, 
+        x_first + (rod_base_width / 2) + (index * distance), 
+        base_y + scene_height_ * 0.5,
+        QPen(Qt::yellow, 4)
+    );
+};
+
