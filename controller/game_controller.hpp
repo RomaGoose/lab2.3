@@ -48,6 +48,7 @@ private:
 
 public slots:
     void on_disks_changed(int new_disk_count) override {
+        solve_timer_->stop();
         model_ = game_model<Stack>(new_disk_count);
         update_view();
     };
