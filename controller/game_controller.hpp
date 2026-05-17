@@ -31,7 +31,25 @@ public slots:
     };
 
     void on_rod_clicked(int index) override { //TODO: lifting animation
-        selected_rod = index == selected_rod ? -1 : index;
+
+        if (selected_rod != -1 && index != -1){
+            if(selected_rod == index){
+                selected_rod = -1;
+                update_view();
+                return;
+            }
+
+            if(model_.can_move(selected_rod, index)){
+                model_.move(selected_rod, index);
+                selected_rod = -1;
+            }
+            else {
+                //TODO: error message
+            }
+        }
+        else{
+            selected_rod = index;
+        }
         update_view();
     } 
 };
@@ -60,7 +78,7 @@ void game_controller<Stack>::update_view() {
     view_->draw_rods();
     view_->draw_disks(array_rods, model_.get_total_disk_count(), selected_rod);
     if(selected_rod != -1){
-        
+        view_->draw_selection(selected_rod);
     }
 }
 

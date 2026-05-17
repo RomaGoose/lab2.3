@@ -10,6 +10,7 @@ class stack {
 public:
     using value_type = typename S::value_type;
     using reference = typename S::reference;
+    using const_reference = const value_type&;
     
     stack(std::initializer_list<value_type> list = {}) {
         for(auto el: list){
@@ -29,8 +30,8 @@ public:
     reference top(){
         return items_.top();
     }
-    const reference top() const {
-        items_.top();
+    const_reference top() const {
+        return items_.top();
     }
     size_t size() const noexcept {
         return items_.size();

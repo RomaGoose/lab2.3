@@ -48,7 +48,7 @@ void HanoiWidget::draw_disks(array_sequence<list_sequence<uint8_t>> rods, size_t
     for(auto rod: rods){
         for(auto disk: rod){
             size_t disk_width = min_disk_size + disk * (disk_width_increment);
-            size_t y_rod = (base_y - rod_width / 2) - (total_disk_count - disk) * disk_height;
+            size_t y_rod = (base_y - rod_width / 2) - (disk_index + 1) * disk_height;
             y_rod -= selected_rod == rod_index && disk_index == rod.size() - 1 ? rod_height * 0.2 : 0;
 
             scene_->addRect(
@@ -61,6 +61,7 @@ void HanoiWidget::draw_disks(array_sequence<list_sequence<uint8_t>> rods, size_t
             );
             ++disk_index;
         }
+        disk_index = 0;
         ++rod_index;
     }
 }
@@ -81,9 +82,9 @@ int  HanoiWidget::rod_clicked_at(int x) {
 void HanoiWidget::draw_selection(int index){
     scene_->addLine(
         x_first - (rod_base_width / 2) + (index * distance), 
-        base_y + scene_height_ * 0.5, 
+        base_y + scene_height_ * 0.05, 
         x_first + (rod_base_width / 2) + (index * distance), 
-        base_y + scene_height_ * 0.5,
+        base_y + scene_height_ * 0.05,
         QPen(Qt::yellow, 4)
     );
 };
