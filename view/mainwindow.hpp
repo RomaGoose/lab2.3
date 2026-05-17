@@ -3,6 +3,7 @@
 #include "hanoi_widget.hpp"
 #include <QMainWindow>
 #include <qcombobox.h>
+#include <qobject.h>
 #include <qpushbutton.h>
 #include <qspinbox.h>
 
@@ -21,6 +22,7 @@ public:
     ~MainWindow() override;
 
     void add_hanoi_widget(HanoiWidget* widget);
+    void add_settings_widget(QWidget* widget);
     
     QComboBox* get_type_combo();
     QSpinBox* get_rods_count_cpin();

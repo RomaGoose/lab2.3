@@ -10,15 +10,10 @@
 main_controller::main_controller(QObject* parent) 
     : main_window_(new MainWindow())
     , hanoi_widget_(new HanoiWidget(main_window_)) 
-    , settings_(
-        main_window_->get_type_combo(), 
-        main_window_->get_rods_count_cpin(),
-        main_window_->get_reset_btn(),
-        main_window_->get_solve_btn()
-    ) {
+    , settings_(this) {
 
     main_window_->add_hanoi_widget(hanoi_widget_);
-    hanoi_widget_->draw_rods();
+    main_window_->add_settings_widget(settings_.get_settings_widget());
 
     setup_game(settings_.get_type_index());
 

@@ -7,6 +7,7 @@ class game_controller_base  : public QObject {
     Q_OBJECT
 
 public: 
+    game_controller_base(QObject* parent = nullptr);
     virtual ~game_controller_base();
     virtual void solve() = 0;
 
